@@ -51,8 +51,8 @@
           var myicon = L.icon({
               iconUrl: 'transport_parking_bicycle.n.0092DA.20.png',
               iconSize: [20, 20],
-              iconAnchor: [0, 0],
-              popupAnchor: [10, 0]
+              iconAnchor: [0, 10],
+              popupAnchor: [10, -12]
           });
           var marker = L.marker(pos, {icon: myicon}).bindPopup(popup);
           this.instance.addLayer(marker);
