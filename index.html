@@ -22,17 +22,17 @@
 <body>
   <div id="map"></div>
   <script>
-	  var attr_osm = 'Kartendaten &copy; <a href="http://openstreetmap.org/">OpenStreetMap</a>-Beitragende',
-      attr_overpass = 'Punkte via <a href="http://www.overpass-api.de/">Overpass API</a>',
-      attr_bbs = '<a href="http://codefor.de">CfG-Kartenserver</a>',
-      attr_hikebike = '<a href="http://hikebikemap.de/">Hikebikemap.de</a>',
-      attr_transitmap = 'OSM Transit Map';
-      
+    var attr_osm = 'Kartendaten &copy; <a href="http://openstreetmap.org/">OpenStreetMap</a>-Beitragende',
+    attr_overpass = 'Punkte via <a href="http://www.overpass-api.de/">Overpass API</a>',
+    attr_bbs = '<a href="http://codefor.de">CfG-Kartenserver</a>',
+    attr_hikebike = '<a href="http://hikebikemap.de/">Hikebikemap.de</a>',
+    attr_transitmap = 'OSM Transit Map';
+    
     var bbs_ulm = new L.TileLayer('http://tiles.codefor.de/static/bbs/ulm/{z}/{x}/{y}.png', {opacity: 0.7, attribution: [attr_osm, attr_overpass, attr_bbs].join(', ')});
     var hikebike = new L.TileLayer('http://toolserver.org/tiles/hikebike/{z}/{x}/{y}.png', {opacity: 0.7, attribution: [attr_osm, attr_overpass, attr_hikebike].join(', ')});
     var transitmap = new L.TileLayer('http://a.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png', {opacity: 0.7, attribution: [attr_osm, attr_overpass, attr_transitmap].join(', ')});
 
-		var map = new L.Map('map').addLayer(transitmap).setView(new L.LatLng(48.4218, 9.95), 16);
+    var map = new L.Map('map').addLayer(transitmap).setView(new L.LatLng(48.4218, 9.95), 16);
 
     //OverPassAPI overlay
     var bikeparking = new L.OverPassLayer({
