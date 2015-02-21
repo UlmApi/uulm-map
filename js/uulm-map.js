@@ -23,7 +23,7 @@ var map = new L.Map('map').addLayer(transitmap).setView(new L.LatLng(48.4218, 9.
 // Zuerst alle Fahrradabstellplaetze, ab einem Zoomlevel von 15
 var bikeparking = new L.OverPassLayer({
       minzoom: 15,
-      query: "http://overpass-api.de/api/interpreter?data=[out:json];node(BBOX)[amenity=bicycle_parking];out;",
+      query: "node(BBOX)[amenity=bicycle_parking];out;",
       callback: function(data) {
         for(i=0;i<data.elements.length;i++) {
           e = data.elements[i];
@@ -57,7 +57,7 @@ var bikeparking = new L.OverPassLayer({
 
 var vending = new L.OverPassLayer({
       minzoom: 15,
-      query: "http://overpass-api.de/api/interpreter?data=[out:json];node(BBOX)[amenity=vending_machine];out;",
+      query: "node(BBOX)[amenity=vending_machine];out;",
       callback: function(data) {
         for(i=0;i<data.elements.length;i++) {
           e = data.elements[i];

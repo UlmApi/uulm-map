@@ -14,5 +14,7 @@ And, of course, the base data comes from OpenStreetMap
 
 ## changelog
 
+ * 2015-02-21: ADDED vending machine query
+ * 2015-02-21: UPDATED LeafletOverpass library
  * 2015-02-19: CHANGED folder structure
  * 2014-08-05: Initial commit
