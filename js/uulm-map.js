@@ -100,10 +100,10 @@ var vending = new L.OverPassLayer({
 
 
 // Kunstpfad
-var bikeparking = new L.OverPassLayer({
+var artwork = new L.OverPassLayer({
       minzoom: 15,
 //      [out:json][timeout:25];(node["tourism"="artwork"];way["tourism"="artwork"];relation["tourism"="artwork"];);out body;>;out skel qt;
-      query: "node["tourism"="artwork"];way["tourism"="artwork"];relation["tourism"="artwork"];);out;",
+      query: "(node(BBOX)[tourism=artwork];way(BBOX)[tourism=artwork];relation(BBOX)[tourism=artwork];);out;",
       callback: function(data) {
         for(i=0;i<data.elements.length;i++) {
           e = data.elements[i];
@@ -141,7 +141,8 @@ var baseMaps = {
 
 var overlayMaps = {
    "Fahrradabstellplätze": bikeparking,
-   "Warenautomaten": vending
+   "Warenautomaten": vending,
+   "Kunstwerke": artwork
 };
 
 L.control.layers(baseMaps, overlayMaps).addTo(map);
