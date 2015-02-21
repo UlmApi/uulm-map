@@ -111,14 +111,23 @@ var artwork = new L.OverPassLayer({
           this.instance._ids[e.id] = true;
 
           var pos = new L.LatLng(e.lat, e.lon);
-          var popup = this.instance._poiInfo(e.tags,e.id);
-//          var popup = '<b>Fahrradabstellanlage</b><br><div>';
-//          if (e.tags.name) { popup = popup + e.tags.name + '<br>'};
-//          if ((e.tags.covered) && (e.tags.covered == 'yes')) {popup = popup + 'überdachte Anlage<br>'};
-//          if (e.tags.capacity) {popup = popup + e.tags.capacity + ' Plätze<br>'};
-//          if (e.tags.opening_hours) {popup = popup + 'Öffnungszeiten: ' + e.tags.opening_hours + '<br>'};
-//          if (e.tags.operator) {popup = popup + 'Betreiber: ' + e.tags.operator};
-//          popup = popup + '</div><a href="http://www.openstreetmap.org/edit?editor=id&node='+e.id+'">Eintrag mit iD-Editor bearbeiten</a><br>';
+//          var popup = this.instance._poiInfo(e.tags,e.id);
+var popup = '';
+          if (e.tags.name) { popup = popup + '<b>' + e.tags.name + '</b><br>'}
+          else { popup = popup + '<b>Titel unbekannt</b><br>'};
+          if (e.tags.artist_name) { popup = popup + e.tags.artist_name + '<br>'}
+          else { popup = popup + 'Unbekannt_e Künster_in<br>'};
+          if (e.tags.artwork_type == 'sculpture') { popup = popup + 'Skulptur'}
+          else if (e.tags.artwork_type == 'statue') { popup = popup + 'Statue'}
+          else if (e.tags.artwork_type == 'painting') { popup = popup + 'Gemälde'}
+          else if (e.tags.artwork_type == 'mural') { popup = popup + 'Wandgemälde'}
+          else if (e.tags.artwork_type == 'architecture') { popup = popup + 'Architektur'}
+          else if (e.tags.artwork_type == 'mosaic') { popup = popup + 'Mosaik'}
+          else { popup = popup + 'Kunstwerk'};
+          if (e.tags.start_date) { popup = popup + ', ' + e.tags.start_date+ '.<br>'}
+          else { popup = popup + '<br>'};
+          if (e.tags.description) { popup = popup + e.tags.description + '<br>'};
+          if (e.tags.website) { popup = popup + '<a href="' + e.tags.website + '">Website' + '<br>'};
 
           var myicon = L.icon({
               iconUrl: 'img/tourist_attraction.n.DA0092.32.png',
