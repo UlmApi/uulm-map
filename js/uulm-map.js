@@ -99,6 +99,38 @@ var vending = new L.OverPassLayer({
     });
 
 
+// Kunstpfad
+var bikeparking = new L.OverPassLayer({
+      minzoom: 15,
+//      [out:json][timeout:25];(node["tourism"="artwork"];way["tourism"="artwork"];relation["tourism"="artwork"];);out body;>;out skel qt;
+      query: "node["tourism"="artwork"];way["tourism"="artwork"];relation["tourism"="artwork"];);out;",
+      callback: function(data) {
+        for(i=0;i<data.elements.length;i++) {
+          e = data.elements[i];
+          if (e.id in this.instance._ids) return;
+          this.instance._ids[e.id] = true;
+
+          var pos = new L.LatLng(e.lat, e.lon);
+          var popup = this.instance._poiInfo(e.tags,e.id);
+//          var popup = '<b>Fahrradabstellanlage</b><br><div>';
+//          if (e.tags.name) { popup = popup + e.tags.name + '<br>'};
+//          if ((e.tags.covered) && (e.tags.covered == 'yes')) {popup = popup + 'überdachte Anlage<br>'};
+//          if (e.tags.capacity) {popup = popup + e.tags.capacity + ' Plätze<br>'};
+//          if (e.tags.opening_hours) {popup = popup + 'Öffnungszeiten: ' + e.tags.opening_hours + '<br>'};
+//          if (e.tags.operator) {popup = popup + 'Betreiber: ' + e.tags.operator};
+//          popup = popup + '</div><a href="http://www.openstreetmap.org/edit?editor=id&node='+e.id+'">Eintrag mit iD-Editor bearbeiten</a><br>';
+
+          var myicon = L.icon({
+              iconUrl: 'img/tourist_attraction.n.DA0092.32.png',
+              iconSize: [20, 20],
+              iconAnchor: [0, 10],
+              popupAnchor: [10, -12]
+          });
+          var marker = L.marker(pos, {icon: myicon}).bindPopup(popup);
+          this.instance.addLayer(marker);
+        }
+      },
+    });
 
 
 var baseMaps = {
