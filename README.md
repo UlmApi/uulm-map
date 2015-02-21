@@ -1,4 +1,4 @@
-# :pin: uulm-map
+# :round_pushpin: uulm-map
 
 This map started out as a bicycle parking map for the ulm university campus.
 
