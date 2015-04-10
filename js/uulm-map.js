@@ -53,6 +53,35 @@ var bikeparking = new L.OverPassLayer({
     });
 
 
+var postboxes = new L.OverPassLayer({
+      minzoom: 15,
+      query: "node(BBOX)[amenity=post_box];out;",
+      callback: function(data) {
+        for(i=0;i<data.elements.length;i++) {
+          e = data.elements[i];
+          if (e.id in this.instance._ids) return;
+          this.instance._ids[e.id] = true;
+
+          var pos = new L.LatLng(e.lat, e.lon);
+//          var popup = this.instance._poiInfo(e.tags,e.id);
+          var popup = '<b>Briefkasten</b><br><div>';
+          if (e.tags.operator) {popup = popup + 'Dienstleister: ' + e.tags.operator + '<br>'};
+          if (e.tags.collection_times) {popup = popup + 'Leerungszeiten: ' + e.tags.collection_times + '<br>'};
+          popup = popup + '</div><a href="http://www.openstreetmap.org/edit?editor=id&node='+e.id+'">Eintrag mit iD-Editor bearbeiten</a><br>';
+
+          var myicon = L.icon({
+              iconUrl: 'img/amenity_post_box.n.32.png',
+              iconSize: [20, 20],
+              iconAnchor: [0, 10],
+              popupAnchor: [10, -12]
+          });
+          var marker = L.marker(pos, {icon: myicon}).bindPopup(popup);
+          this.instance.addLayer(marker);
+        }
+      },
+    });
+
+
 // Alle Warenautomaten
 
 var vending = new L.OverPassLayer({
@@ -150,6 +179,7 @@ var baseMaps = {
 
 var overlayMaps = {
    "Fahrradabstellplätze": bikeparking,
+   "Briefkästen": postboxes,
    "Warenautomaten": vending,
    "Kunstwerke": artwork
 };
