@@ -109,6 +109,8 @@ var vending = new L.OverPassLayer({
                       icon = 'img/food_ice_cream.glow.8E7409.32.png'; }
           else if (e.tags.vending == 'condoms')
                     { popup = popup + 'Kondome<br>'; }
+          else if (e.tags.vending == 'excrement_bags')
+                    { popup = popup + 'Fäkalienbeutel<br>'; }
           else { popup = popup + e.tags.vending + '<br>'; }
                                           
 //          if (e.tags.payment:coins == 'yes') {popup = popup + 'Nimmt Münzen<br>'}; // geht net, wegen Doppelpunkt oO
